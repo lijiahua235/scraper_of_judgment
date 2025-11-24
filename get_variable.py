@@ -8,10 +8,14 @@ list_HTML_all_judgment = crawl_judgments(start_page=page_start, end_page=page_en
 
 
 #case_citation	String	Unique ID for retrieval and grouping	Easy
-for url, html in list_HTML_all_judgment:
+title_list = []
+for item in list_HTML_all_judgment:
+    html = item["html"]
     soup = BeautifulSoup(html, "html.parser")
     title = soup.title.get_text(strip=True)
-    print(title)
+    title_list.append(title)
+
+print(f"The list of case_citation is {title_list}")
 
 #for the rest two of the variables, it can not only use the basic html parser but also use the LLM-method to
 #get the exact details
